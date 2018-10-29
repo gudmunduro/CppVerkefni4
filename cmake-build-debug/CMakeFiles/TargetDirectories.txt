@@ -1,0 +1,3 @@
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/cmake-build-debug/CMakeFiles/Skilaverkefni4.dir

@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/FlightBooking.cpp
+FlightBooking.h
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/FlightBooking.h
+
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/FlightBooking.h
+Functions.cpp
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/Functions.cpp
+
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/Functions.cpp
+iterator
+-
+iostream
+-
+string
+-
+sstream
+-
+
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/main.cpp
+iostream
+-
+FlightBooking.h
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/FlightBooking.h
+Functions.cpp
+/home/gudmundur/External1/Projects/Forritun/Cpp/Skilaverkefni4/Functions.cpp
+
