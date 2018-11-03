@@ -2,6 +2,19 @@
 #include "FlightBooking.h"
 #include "Functions.cpp"
 
+using namespace Functions;
+
+void processCommand(string command, string value)
+{
+	if (command == "add")
+	{
+
+	}
+	if (command == "cancel")
+	{
+
+	}
+}
 
 int main() {
     int reserved = 0,
@@ -16,8 +29,10 @@ int main() {
     {
         booking.printStatus();
         cout << "What would you like to do?: ";
-        cin.getline(command);
-
+		getline(cin, command);
+        string *cmdSplit = new string[2];
+        SplitString(command, ' ', cmdSplit);
+		processCommand(cmdSplit[0], cmdSplit[1]);
     }
 
     return 0;

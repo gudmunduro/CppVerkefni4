@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Skilaverkefni4.dir/main.cpp.o"
-  "CMakeFiles/Skilaverkefni4.dir/FlightBooking.cpp.o"
+  "CMakeFiles/Skilaverkefni4.dir/main.cpp.obj"
+  "CMakeFiles/Skilaverkefni4.dir/FlightBooking.cpp.obj"
   "Skilaverkefni4.pdb"
-  "Skilaverkefni4"
+  "Skilaverkefni4.exe"
+  "Skilaverkefni4.exe.manifest"
+  "Skilaverkefni4.lib"
 )
 
 # Per-language clean rules from dependency scanning.
