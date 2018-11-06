@@ -12,7 +12,7 @@ FlightBooking::FlightBooking(int id, int capacity, int reserved)
     {
         throw invalid_argument("Reserved value above capacity");
     }
-    if (reserved < 0) reserved = 0;
+    if (reserved < 0) reserved = 0; // Ef það er í mínus breytist það í núll
     this->reserved = reserved;
 }
 void FlightBooking::printStatus()
@@ -22,9 +22,8 @@ void FlightBooking::printStatus()
 }
 bool FlightBooking::reserveSeats(int number_ob_seats)
 {
-    if (isAllowedReservation(number_ob_seats + reserved))
+    if (isAllowedReservation(number_ob_seats + reserved) && number_ob_seats >= 0) // Ef niðurstaðan eftir breytingar er leyfileg og talan sem var sett inn er ekki í mínus
     {
-        if (number_ob_seats < 0) number_ob_seats = 0;
         reserved += number_ob_seats;
         return true;
     }
@@ -32,11 +31,14 @@ bool FlightBooking::reserveSeats(int number_ob_seats)
 }
 bool FlightBooking::canceReservations(int number_ob_seats)
 {
-    if (number_ob_seats < 0) number_ob_seats = 0;
-    reserved -= number_ob_seats;
-    return true;
+	if (reserved - number_ob_seats >= 0 && number_ob_seats >= 0) // Ef niðurstaðan eftir breytingu verður hærri en núll og talan sem var sett inn er ekki í mínus
+	{
+		reserved -= number_ob_seats;
+		return true;
+	}
+	return false;
 }
 bool FlightBooking::isAllowedReservation(int reservation)
 {
-    return ((float)reservation) / ((float)capacity) < 1.05;
+    return ((float)reservation) / ((float)capacity) < 1.05; // Skilar true eða false eftir því hvort það sé yfir leyfilega magninu sem er 105%
 }

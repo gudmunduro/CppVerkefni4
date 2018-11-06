@@ -1,2 +1,1 @@
-﻿  main.cpp
-  Skilaverkefni4.vcxproj -> E:\Projects\Forritun\CppVerkefni4\Debug\Skilaverkefni4.exe
+﻿E:\Projects\Forritun\CppVerkefni4\Skilaverkefni4.vcxproj : error MSB4057: The target "Deploy" does not exist in the project.

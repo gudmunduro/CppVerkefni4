@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <map>
 
 using namespace std;
 
@@ -47,26 +48,6 @@ namespace Functions { // Fyiri einhver random f�ll sem �g held a� �g mun
 		{
 			result[current] = buffer;
 			current++;
-		}
-	}
-
-	inline void ____SplitString2(string str, string on, string *result)
-	{
-		// EKKI NOTA
-		int current = 0;
-		string cutStrings[10000];
-		cutStrings[0] = str;
-		while (cutStrings[current].find_first_of(on) != 0)
-		{
-			const unsigned long index = cutStrings[current].find_first_of(on);
-			cout << "!!    ";
-			cout << cutStrings[current] << endl;
-			cout << index;
-			cout << cutStrings[current].substr(0, index) << endl;
-			result[current] = cutStrings[current].substr(0, index);
-			current++;
-			cutStrings[current] = cutStrings[current - 1].substr(index + 1, cutStrings[current - 1].length());
-			cout << cutStrings[current];
 		}
 	}
 

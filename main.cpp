@@ -1,38 +1,106 @@
-
 #include "FlightBooking.h"
 #include "Functions.cpp"
 
 using namespace Functions;
 
-void processCommand(string command, string value)
+map<int, FlightBooking*> flightBookings;
+
+bool isValidId(int id)
 {
+	return flightBookings.find(id) != flightBookings.end(); // Skilar true eða false eftir því hvort það sé til flug með þessu id
+}
+
+void createArgumentsArray(string *cmdSplit, string *arguments)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		arguments[i] = cmdSplit[i + 1];  // Taka úr einu sæti fyrir ofan í cmdSplit því commandið sjálft er fyrst í því
+	}
+}
+
+void printError(int code = 0)
+{
+	switch (code)
+	{
+	case 0: break;
+	case 1: cout << "Error: Flight does not exist(Invalid ID)" << endl; break;
+	case 2: cout << "Error: Flight already exists" << endl; break;
+	case 3: cout << "Error: Invalid command" << endl; break;
+	case 4: cout << "Error: Seats cannot be at more than 105% capacity" << endl; break;
+	case 5: cout << "Error: Seats cannot be at below 0% capacity" << endl; break;
+	}
+	cout << "Cannot perform this operation" << endl;
+}
+
+void processCommand(string command, string *arguments)
+{
+	if (command == "quit") return;
+
+	int id = stoi(arguments[0]);
+
+	if (command == "create")
+	{
+		if (!isValidId(id))
+			flightBookings[id] = new FlightBooking(id, stoi(arguments[1]), 0);
+		else printError(2);
+	}
+	if (command == "delete")
+	{
+		if (isValidId(id))
+			flightBookings.erase(id);
+		else printError(1);
+	}
 	if (command == "add")
 	{
-
+		if (isValidId(id))
+		{
+			if (!flightBookings[id]->reserveSeats(stoi(arguments[1])))
+				printError(4); // Prentar út error ef það tókst ekki
+		}
+		else printError(1);
 	}
 	if (command == "cancel")
 	{
-
+		if (isValidId(id))
+		{
+			if (!flightBookings[id]->canceReservations(stoi(arguments[1])))
+				printError(5); // Prentar út error ef það tókst ekki
+		}
+		else printError(1);
 	}
 }
 
 int main() {
-    int reserved = 0,
-            capacity = 0;
-    cout << "Provide flight capacity: ";
-    cin >> capacity;
-    cout << "Provide number of reserved seats: ";
-    cin >> reserved;
-    FlightBooking booking(1, capacity, reserved);
     string command = "";
+
     while (command != "quit")
     {
-        booking.printStatus();
         cout << "What would you like to do?: ";
 		getline(cin, command);
-        string *cmdSplit = new string[2];
+
+		if (command == "")
+		{
+			/* Hætta við ef ekkert er skirfað */
+			printError(3);
+			continue;
+		}
+
+        string *cmdSplit = new string[11];
+		string *arguments = new string[10];
         SplitString(command, ' ', cmdSplit);
-		processCommand(cmdSplit[0], cmdSplit[1]);
+		createArgumentsArray(cmdSplit, arguments); // Taka öll arguments og setja í sér array
+
+		if (arguments[0] == "")
+		{
+			/* Hætta við ef command hefur engin arguments */
+			printError(3);
+			continue;
+		}
+
+		processCommand(cmdSplit[0], arguments);
+
+		if (isValidId(stoi(arguments[0])))
+			flightBookings[stoi(arguments[0])]->printStatus(); // Ef flugið með þetta id er til prentar það status
     }
 
     return 0;
